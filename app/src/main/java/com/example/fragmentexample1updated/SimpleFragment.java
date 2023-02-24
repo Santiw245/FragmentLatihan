@@ -21,20 +21,22 @@ public class SimpleFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static SimpleFragment newInstance(){
+        return new SimpleFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_simple, container, false);
-        final RadioGroup radioGroup = rootView.findViewById(R.id.radio_group);
+        final View rootview = inflater.inflate(R.layout.fragment_simple, container, false);
+        final RadioGroup radioGroup = rootview.findViewById(R.id.radio_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int i) {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 View radioButton = radioGroup.findViewById(i);
                 int index = radioGroup.indexOfChild(radioButton);
-                TextView textView = rootView.findViewById(R.id.fragmrnt_header);
-
+                TextView textView = rootview.findViewById(R.id.fragment_header);
                 switch (index){
                     case 0:
                         textView.setText(R.string.yes_message);
@@ -43,9 +45,8 @@ public class SimpleFragment extends Fragment {
                         textView.setText(R.string.no_message);
                         break;
                 }
-
             }
         });
-        return rootView;
+        return rootview;
     }
 }
